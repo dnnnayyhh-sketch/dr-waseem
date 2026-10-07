@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عيادة الدكتور وسيم الحلقي</title>
+
+  <!-- الخط العربي Readex Pro وأيقونات Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #070d19;
+      --card-bg: #0c1526;
+      --card-border: rgba(30, 58, 95, 0.45);
+      --accent-blue: #0284c7;
+      --btn-orange: #f59e0b;
+      --whatsapp: #10b981;
+      --text: #ffffff;
+      --muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Readex Pro', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px 105px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    /* رأس الصفحة */
+    .header-box {
+      text-align: center;
+      padding: 8px 0 20px;
+    }
+
+    .doctor-avatar-box {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 16px;
+      border-radius: 22px;
+      border: 1.5px solid rgba(245, 158, 11, 0.5);
+      background: #0d1728;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(2, 132, 199, 0.25);
+    }
+
+    .doctor-avatar-box i {
+      font-size: 2.2rem;
+      color: #38bdf8;
+    }
+
+    .specialty-tag {
+      display: inline-block;
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 18px;
+      border-radius: 20px;
+      color: #38bdf8;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .doctor-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+    }
+
+    .doctor-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* عناوين الأقسام */
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 22px 4px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot-indicator {
+      width: 7px;
+      height: 7px;
+      background-color: #38bdf8;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* بطاقة تجميل الأنف الكبيرة */
+    .rhino-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 20px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .rhino-card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rhino-card-title i {
+      color: #f59e0b;
+      font-size: 1.1rem;
+    }
+
+    .rhino-card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+
+    /* معرض الصور */
+    .cases-scroll-wrap {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .cases-scroll-wrap::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .cases-scroll-wrap::-webkit-scrollbar-thumb {
+      background: rgba(245, 158, 11, 0.4);
+      border-radius: 10px;
+    }
+
+    .case-thumb {
+      min-width: 140px;
+      max-width: 140px;
+      height: 180px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      flex-shrink: 0;
+      background: #000;
+      scroll-snap-align: start;
+      position: relative;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+    }
+
+    .case-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .case-thumb .zoom-icon {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 3px 6px;
+      border-radius: 6px;
+    }
+
+    /* نافذة تكبير الصورة (Lightbox) */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.94);
+      z-index: 999999999;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      text-decoration: none;
+    }
+
+    .lightbox-modal:target {
+      display: flex;
+    }
+
+    .lightbox-modal img {
+      max-width: 95vw;
+      max-height: 85vh;
+      border-radius: 12px;
+      object-fit: contain;
+      box-shadow: 0 0 35px rgba(0, 0, 0, 0.9);
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: #ffffff;
+      font-size: 32px;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.25);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      text-decoration: none;
+    }
+
+    .btn-orange-full {
+      width: 100%;
+      background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+      color: #0b1120;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px;
+      border-radius: 14px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(245, 158, 11, 0.28);
+    }
+
+    /* كروت الخدمات */
+    .service-row-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .service-row-info {
+      flex: 1;
+    }
+
+    .service-row-info h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .service-row-info p {
+      font-size: 0.76rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .btn-row-orange {
+      background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
+      color: #0b1120;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25);
+    }
+
+    .btn-row-blue {
+      background: linear-gradient(180deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    /* جدول الدوام */
+    .schedule-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-top: 20px;
+      margin-bottom: 14px;
+    }
+
+    .schedule-header {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .sched-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      font-size: 0.82rem;
+    }
+
+    .sched-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .sched-name {
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sched-name i {
+      color: #ef4444;
+      font-size: 0.8rem;
+    }
+
+    .sched-val {
+      color: #38bdf8;
+      font-weight: 600;
+      background: rgba(2, 132, 199, 0.15);
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    /* زر خرائط Google */
+    .btn-maps-location {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(14, 165, 233, 0.12);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      color: #38bdf8;
+      padding: 13px;
+      border-radius: 16px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 12px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 16px rgba(14, 165, 233, 0.15);
+    }
+
+    /* زر الواتساب السفلي الثابت */
+    .sticky-footer {
+      position: fixed;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      max-width: 430px;
+      margin: 0 auto;
+      z-index: 100;
+    }
+
+    .btn-sticky-whatsapp {
+      background: #10b981;
+      color: #022c22;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 16px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.35);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- رأس الصفحة والمعلومات الرئيسية -->
+    <header class="header-box">
+      <div class="doctor-avatar-box">
+        <i class="fa-solid fa-stethoscope"></i>
+      </div>
+
+      <div class="specialty-tag">جراحة وتجميل الأنف والوجه</div>
+
+      <h1 class="doctor-title">عيادة الدكتور وسيم الحلقي</h1>
+      <p class="doctor-sub">تشخيص دقيق، خبرة جراحية، وحلول تجميلية متقدمة</p>
+    </header>
+
+    <!-- بطاقة تجميل الأنف وإصلاح مشاكل التنفس مع المعرض -->
+    <div class="rhino-card">
+      <div class="rhino-card-title">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>تجميل الأنف وإصلاح مشاكل التنفس</span>
+      </div>
+      <p class="rhino-card-desc">تقويم انحراف الوتيرة الأنفية، مع تنسيق ونحت مظهر الأنف التجميلي بدقة وتناسق طبيعي.</p>
+
+      <!-- معرض الصور (10 حالات كاملة) -->
+      <div class="cases-scroll-wrap">
+        <a href="#case1" class="case-thumb">
+          <img src="https://i.postimg.cc/L503J3kd/IMG-20261006-WA0014.jpg" alt="حالة سريرية 1">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case2" class="case-thumb">
+          <img src="https://i.postimg.cc/MHrmnm7h/IMG-20261006-WA0021.jpg" alt="حالة سريرية 2">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case3" class="case-thumb">
+          <img src="https://i.postimg.cc/Wzfwdwmc/IMG-20261006-WA0023.jpg" alt="حالة سريرية 3">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case4" class="case-thumb">
+          <img src="https://i.postimg.cc/kGhv2vNd/IMG-20261006-WA0026.jpg" alt="حالة سريرية 4">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case5" class="case-thumb">
+          <img src="https://i.postimg.cc/KjsD1D7b/IMG-20261006-WA0027.jpg" alt="حالة سريرية 5">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case6" class="case-thumb">
+          <img src="https://i.postimg.cc/tJmNsNdj/IMG-20261006-WA0029.jpg" alt="حالة سريرية 6">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case7" class="case-thumb">
+          <img src="https://i.postimg.cc/bJHhf3XR/IMG-20261006-WA0036.jpg" alt="حالة سريرية 7">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case8" class="case-thumb">
+          <img src="https://i.postimg.cc/hjbBRpFd/IMG-20261006-WA0037.jpg" alt="حالة سريرية 8">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case9" class="case-thumb">
+          <img src="https://i.postimg.cc/gJqWbN9y/IMG-20261006-WA0040.jpg" alt="حالة سريرية 9">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+        <a href="#case10" class="case-thumb">
+          <img src="https://i.postimg.cc/tJmNsNdj/IMG-20261006-WA0029.jpg" alt="حالة سريرية 10">
+          <span class="zoom-icon"><i class="fa-solid fa-expand"></i></span>
+        </a>
+      </div>
+
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A7%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%AA%D8%AC%D9%85%D9%8A%D9%84%20%D8%A7%D9%84%D8%A3%D9%86%D9%81%20%D9%88%D8%AA%D9%86%D9%81%D8%B3" target="_blank" class="btn-orange-full">
+        <span>حجز استشارة تجميل وتنفس الأنف مع الدكتور</span>
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </div>
+
+    <!-- إجراءات جراحة وتجميل الوجه -->
+    <h3 class="section-title">
+      <span class="dot-indicator"></span>
+      <span>إجراءات جراحة وتجميل الوجه</span>
+    </h3>
+
+    <div class="service-row-card">
+      <div class="service-row-info">
+        <h4>جراحة شد وتجميل الأجفان</h4>
+        <p>إزالة ترهلات الجلد والانتفاخات الدهنية حول العين لاستعادة شباب ونضارة النظرة.</p>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A7%D8%AD%D8%AC%D8%B2%20%D9%83%D8%B4%D9%81%D9%8A%D8%A9%20%D8%AC%D8%B1%D8%A7%D8%AD%D8%A9%20%D8%B4%D8%AF%20%D9%88%D8%AA%D8%AC%D9%85%D9%8A%D9%84%20%D8%A7%D9%84%D8%A3%D8%AC%D9%81%D8%A7%D9%86" target="_blank" class="btn-row-orange">
+        <span>حجز كشفية</span>
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </div>
+
+    <div class="service-row-card">
+      <div class="service-row-info">
+        <h4>شد الوجه الجراحي وبالخيوط</h4>
+        <p>أحدث تقنيات شد الوجه والرقبة جراحياً، وشد الملامح بالخيوط بدون جراحة معقدة.</p>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A7%D8%AD%D8%AC%D8%B2%20%D9%83%D8%B4%D9%81%D9%8A%D8%A9%20%D8%B4%D8%AF%20%D8%A7%D9%84%D9%88%D8%AC%D9%87" target="_blank" class="btn-row-orange">
+        <span>حجز كشفية</span>
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </div>
+
+    <div class="service-row-card">
+      <div class="service-row-info">
+        <h4>الحقن التجميلي (بوتوكس • فيلر • ميزو)</h4>
+        <p>ملء الخطوط التعبيرية، توريد وتحديد الملامح، وجلسات نضارة البشرة الفورية.</p>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A7%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF%20%D8%AD%D9%82%D9%86%20%D8%AA%D8%AC%D9%85%D9%8A%D9%84%D9%8A" target="_blank" class="btn-row-orange">
+        <span>حجز موعد</span>
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </div>
+
+    <!-- جراحة الأذن والأنف والحنجرة العامة -->
+    <h3 class="section-title">
+      <span class="dot-indicator"></span>
+      <span>جراحة الأذن والأنف والحنجرة العامة</span>
+    </h3>
+
+    <div class="service-row-card">
+      <div class="service-row-info">
+        <h4>تصحيح انحراف الوتيرة الأنفية</h4>
+        <p>علاج انسداد مجرى الهواء، الشخير، ومشاكل الصداع وصعوبة التنفس المزمنة.</p>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A7%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%A7%D9%86%D8%AD%D8%B1%D8%A7%D9%81%20%D8%A7%D9%84%D9%88%D8%AA%D9%8A%D8%B1%D8%A9" target="_blank" class="btn-row-blue">
+        <span>استشارة طبية</span>
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </div>
+
+    <div class="service-row-card">
+      <div class="service-row-info">
+        <h4>استئصال اللوزات والناميات</h4>
+        <p>علاج الالتهابات المتكررة، توقف التنفس أثناء النوم، والشخير للبالغين والأطفال.</p>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A7%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A7%D9%84%D9%84%D9%88%D8%B2%D8%A7%D8%AA" target="_blank" class="btn-row-blue">
+        <span>استشارة طبية</span>
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </div>
+
+    <div class="service-row-card">
+      <div class="service-row-info">
+        <h4>ترقيع غشاء الطبلة وأمراض الأذن</h4>
+        <p>ترميم انثقاب غشاء الطبل، علاج نقص السمع التوصيلي، والتهابات الأذن الوسطى.</p>
+      </div>
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A7%D8%AD%D8%AC%D8%B2%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9%20%D8%A8%D8%AE%D8%B5%D9%88%D8%B5%20%D8%AA%D8%B1%D9%82%D9%8A%D8%B9%20%D8%BA%D8%B4%D8%A7%D8%A1%20%D8%A7%D9%84%D8%B7%D8%A8%D9%84" target="_blank" class="btn-row-blue">
+        <span>استشارة طبية</span>
+        <i class="fa-regular fa-comment-dots"></i>
+      </a>
+    </div>
+
+    <!-- جدول المعاينات والدوام الرسمي -->
+    <div class="schedule-box">
+      <div class="schedule-header">
+        <i class="fa-regular fa-calendar-days"></i>
+        <span>جدول المعاينات والدوام الرسمي</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-name"><i class="fa-solid fa-location-dot"></i> عيادة جاسم (درعا)</span>
+        <span class="sched-val">السبت إلى الثلاثاء (11:00 ص - 3:00 م)</span>
+      </div>
+      <div class="sched-row">
+        <span class="sched-name"><i class="fa-solid fa-location-dot"></i> عيادة دمشق (الشام)</span>
+        <span class="sched-val">الأربعاء والخميس</span>
+      </div>
+    </div>
+
+    <!-- زر خرائط Google -->
+    <a href="https://maps.app.goo.gl/ApXWmfdkQujcByAc7" target="_blank" class="btn-maps-location">
+      <i class="fa-solid fa-map-location-dot"></i>
+      <span>موقع العيادة على خرائط Google (جاسم)</span>
+    </a>
+
+    <!-- زر الواتساب السفلي الثابت -->
+    <div class="sticky-footer">
+      <a href="https://api.whatsapp.com/send?phone=963933460797&text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%20%D8%AF%D9%83%D8%AA%D9%88%D8%B1%20%D9%88%D8%B3%D9%8A%D9%85%20%D8%B9%D9%85%D8%A7%D8%AF%20%D8%A7%D9%84%D8%AD%D9%84%D9%82%D9%8A%D8%8C%20%D8%AD%D8%A7%D8%A8%D8%A8%20%D8%A3%D8%AD%D8%AC%D8%B2%20%D9%85%D9%88%D8%B9%D8%AF%20%D8%A7%D8%B3%D8%AA%D8%B4%D8%A7%D8%B1%D8%A9" target="_blank" class="btn-sticky-whatsapp">
+        <span>حجز موعد استشارة مع د. وسيم عبر الواتساب</span>
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- نوافذ تكبير الحالات السريرية عند النقر -->
+  <a href="#" class="lightbox-modal" id="case1">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/L503J3kd/IMG-20261006-WA0014.jpg" alt="حالة سريرية 1">
+  </a>
+
+    <a href="#" class="lightbox-modal" id="case2">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/MHrmnm7h/IMG-20261006-WA0021.jpg" alt="حالة سريرية 2">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case3">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/Wzfwdwmc/IMG-20261006-WA0023.jpg" alt="حالة سريرية 3">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case4">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/kGhv2vNd/IMG-20261006-WA0026.jpg" alt="حالة سريرية 4">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case5">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/KjsD1D7b/IMG-20261006-WA0027.jpg" alt="حالة سريرية 5">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case6">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/tJmNsNdj/IMG-20261006-WA0029.jpg" alt="حالة سريرية 6">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case7">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/bJHhf3XR/IMG-20261006-WA0036.jpg" alt="حالة سريرية 7">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case8">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/hjbBRpFd/IMG-20261006-WA0037.jpg" alt="حالة سريرية 8">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case9">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/gJqWbN9y/IMG-20261006-WA0040.jpg" alt="حالة سريرية 9">
+  </a>
+
+  <a href="#" class="lightbox-modal" id="case10">
+    <span class="close-modal-btn">&times;</span>
+    <img src="https://i.postimg.cc/tJmNsNdj/IMG-20261006-WA0029.jpg" alt="حالة سريرية 10">
+  </a>
+
+</body>
+</html>
